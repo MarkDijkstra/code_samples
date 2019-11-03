@@ -1,0 +1,417 @@
+/* 
+
+-------------------------------------
+
+Filename    : header 
+Version     : 1.0
+Last change : 26/08/2018
+
+-------------------------------------
+
+*/
+
+.mainheader__top{ 
+  
+    width    : 100%;
+    position : relative; 
+
+    @include rem(font-size , 13px);    
+    @include rem(height    , 70px);
+    
+    .inner{
+        
+        display : flex; 
+        
+        @include rem(padding-top    , 15px );
+        @include rem(padding-bottom , 15px );
+        
+        > .float-right{
+            
+            margin-left : auto;
+
+        }
+        
+        .centerpart{
+            
+            flex-grow : 1;
+            
+        }
+
+    }
+    
+    .search__field{
+
+        display  : block;
+        float    : none;        
+        position : relative;
+        
+        @include rem(margin-top , -5px);
+        
+        .fa{
+
+            position   : absolute;
+            left       : 0;
+            top        : 0;                
+            text-align : center;
+            
+            @include    rem(line-height , 50px);
+            @include square(50px);
+            
+        }
+
+        .form-control{
+
+            float   : none;
+            display : block;
+            
+            @include rem(height       , 50px);
+            @include rem(padding-left , 50px);
+            
+            &:focus{
+                
+                box-shadow : none!important;
+                
+            }
+
+        }
+        
+    }   
+
+    .main__logo{
+
+        float       : left;
+        text-align  : left;    
+        font-weight : bold;
+        width       : auto;
+        font-family : sans-serif; 
+
+        @include rem(font-size    , 13px);
+        @include rem(line-height  , 38px);
+        @include rem(height       , 40px);
+        
+        &:focus,
+        &:hover{
+
+            text-decoration : none;
+
+        }
+        
+        &.logo--center{
+            
+            position   : absolute;
+            top        : 50%;
+            left       : 50%;
+            float      : none;            
+            display    : block;
+            text-align : center;
+            
+            @include rem(width , 200px);
+            @include rem(margin , -20px 0 0 -100px);
+            
+        }
+
+    }
+    
+    .divider{
+        
+        float : left; 
+
+        @include rem(width  , 1px);
+        @include rem(height , 30px);
+        @include rem(margin , 5px 30px 0);
+
+    }
+    
+    > div > p{
+        
+        width  : auto;
+        margin : 0;
+        float  : left;
+        
+        @include rem(height      , 40px);
+        @include rem(line-height , 38px);
+        
+    }
+    
+    .dropdown{
+        
+        float : left;
+        
+        @include rem(height    , 40px);
+        @include rem(font-size , 13px);
+        
+        .dropdown-menu{
+            
+            @include rem(top, 53px, !important);
+
+        }  
+            
+    }
+    
+    .btn{
+        
+        float : left;
+  
+    }
+    
+    .nav{
+        
+        width : auto;
+        float : left;
+
+        @include rem(height      , 40px);
+        @include rem(line-height , 38px);       
+        
+        .nav-link{
+            
+            padding  : 0;
+            margin   : 0;
+            height   : 100%;
+            position : relative;
+            
+            @include rem(margin-right , 30px);
+            
+            &:first-child{
+                
+                @include rem(margin-right , 30px);
+                
+            }
+            
+        }
+        
+    }
+    
+    .dropdown{
+        
+         @include rem(margin-right , 30px);
+        
+    }
+    
+    .dropdown-toggle{
+
+        float           : left;
+        margin          : 0;
+        text-decoration : none;
+        margin          : 0;
+        
+        @include rem(height       , 40px);
+        @include rem(line-height  , 38px);    
+        @include rem(font-size    , 13px);        
+        
+        &.btn{
+            
+            @include rem(height      , 40px);
+            @include rem(line-height , 38px);
+            
+        }
+        
+        &:after{
+            
+            @include rem(right , 10px); 
+            
+        }
+        
+    }
+    
+    .profile__avatar{
+
+        float               : right;
+        position            : relative;
+        background-position : center center;
+        background-repeat   : no-repeat;
+        
+        @include    rem(margin , 0 0 0 15px);
+        @include square(40px);
+
+        img{
+
+            border-style : solid;
+        
+
+            @include    rem(border-width , 2px); 
+            @include square(100%);
+
+        }
+        
+        .actidot{
+
+            position : absolute;            
+            top      : 0;
+            right    : 0;
+
+        } 
+
+    }
+
+    .hamburger{
+        
+        cursor : pointer;
+        float  : left;
+        
+        @include rem(margin , 7px 0 0 0);
+
+        span{
+
+            display : block;
+
+            @include rem(width  , 20px);
+            @include rem(height , 2px);
+            @include rem(margin , 5px 0);
+            
+            &:nth-child(2){
+                
+                 @include rem(width , 15px);
+                
+            }
+
+        }
+
+    }
+    
+    
+    .float-right{
+        
+        .btn{
+            
+           // @include rem(margin , 0 0 0 15px);
+
+        }
+                
+        .divider{
+
+            @include rem(margin , 5px 0 0 30px);
+
+        }
+        
+        .dropdown{
+            
+            @include rem(margin , 0 0 0 30px);
+            
+            > .btn{
+                
+                margin : 0;
+                
+            }
+
+        }
+ 
+    }    
+       
+}
+
+.stickyheader{
+    
+    
+    #mainheader{
+        
+        @include rem(padding-top , 70px);
+        
+    }
+    
+    .mainheader__top{        
+
+        z-index  : 1000;
+        position : fixed;
+        top      : 0;
+        left     : 0;
+        right    : 0;
+
+    }
+            
+}
+
+.mainheader__bottom{ 
+    
+    border-bottom-style : solid;
+    
+    @include rem(height              , 70px);
+    @include rem(border-bottom-width , 1px);
+    
+    .inner{
+        
+        @include rem(padding-top    , 15px);
+        @include rem(padding-bottom , 15px);
+        
+    }
+    
+    > div{
+        
+        @include rem(height      , 40px);
+        @include rem(line-height , 38px);
+        
+    }
+    
+    .breadcrumb{
+        
+        padding : 0;  
+        float   : left;
+
+        @include rem(height , 40px);
+  
+        @include rem(margin , 0 30px 0 0);
+        
+        .breadcrumb-item{
+            
+            text-decoration : none;
+            
+        }
+         
+    }
+    
+    .divider{
+        
+        float : left; 
+
+        @include rem(width  , 1px);
+        @include rem(height , 30px);
+        @include rem(margin , 5px 30px 0);
+
+    }
+    
+    .float-right{
+        
+        > .btn,
+        > .dropdown{
+            
+            float: left;
+            
+            @include rem(margin , 0 0 0 15px);
+            
+            > .btn{
+                
+                margin : 0;
+                
+            }
+
+        }
+        
+        .nav{
+
+            width : auto;
+            float : left;
+
+            @include rem(height      , 40px);
+            @include rem(line-height , 38px);       
+
+            .nav-link{
+
+                padding  : 0;
+                margin   : 0;
+                height   : 100%;
+                position : relative;
+
+                @include rem(margin-left , 15px);
+
+            }
+
+        }
+
+        .divider{
+
+            @include rem(margin , 5px 0 0 30px);
+
+        }
+        
+    }
+
+}
