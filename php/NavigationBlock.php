@@ -1,8 +1,5 @@
 <?php
-
 namespace frontend\components;
-
-
 use common\widgets\ClientScript;
 use yii\web\View;
 
@@ -22,14 +19,11 @@ class NavigationBlock
      */
     public function __construct($array = false , $limit = 10)
     {
-
         $this->limit       = self::setPerPage($limit);
         $this->array       = is_array($array) ? $array : [];
         $this->totalItems  = self::totalItems();
-
         $this->totalPages  = self::totalPages();
         $this->currentPage = self::currentPage();
-
     }
 
     /**
@@ -37,9 +31,7 @@ class NavigationBlock
      */
     public function totalItems()
     {
-
         return count($this->array);
-
     }
 
     /**
@@ -47,24 +39,22 @@ class NavigationBlock
      */
     public function arrayPerPage()
     {
-
         $offset = self::offset();
 
-//            $total      = count($array);
-//            $totalPages = ceil( $total / $limit );
-//            $page       = ! empty( $_GET['page'] ) ? (int) $_GET['page'] : 1;
-//            $page       = max($page, 1);
-//            $page       = min($page, $totalPages);
-//            $offset     = ($page - 1) * $limit;
-//            $offset     = $offset < 0 ? 0 : $offset;
-           // $output     = [];
-
-//            foreach($array as $item) {
-//                $output[] = array_slice($item, $offset, $limit);
-//            }
-
+        $total      = count($array);
+        $totalPages = ceil( $total / $limit );
+        $page       = ! empty( $_GET['page'] ) ? (int) $_GET['page'] : 1;
+        $page       = max($page, 1);
+        $page       = min($page, $totalPages);
+        $offset     = ($page - 1) * $limit;
+        $offset     = $offset < 0 ? 0 : $offset;
+        $output     = [];
+        
+        foreach($array as $item) {
+           $output[] = array_slice($item, $offset, $limit);
+        }
+        
         return array_slice($this->array, $offset, $this->limit);
-
     }
 
     /**
@@ -74,7 +64,6 @@ class NavigationBlock
      */
     private function offset()
     {
-
         $page       = !empty( $_GET['page'] ) ? (int) $_GET['page'] : 1;
         $page       = $page > $this->totalPages ? $this->totalPages : $page;
         $page       = max( $page, 1);
@@ -83,7 +72,6 @@ class NavigationBlock
         $offset     = $offset < 0 ? 0 :  $offset;
 
         return $offset;
-
     }
 
     /**
@@ -91,17 +79,11 @@ class NavigationBlock
      */
     public function currentPage()
     {
-
-        if(isset($_GET['page']) && !empty($_GET['page'])) {
-
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
             return $_GET['page'] <= $this->totalPages ? $_GET['page'] : $this->totalPages ;
-
-        }else{
-
+        } else {
             return 1;
         }
-
-
     }
 
     /**
@@ -110,9 +92,7 @@ class NavigationBlock
      */
     public static function setPerPage( $limit )
     {
-
         return is_integer($limit) ? $limit : 10;
-
     }
 
     /**
@@ -120,9 +100,7 @@ class NavigationBlock
      */
     public function perPage()
     {
-
         return $this->limit;
-
     }
 
     /**
@@ -132,9 +110,7 @@ class NavigationBlock
      */
     private function totalPages()
     {
-
         return ceil( $this->totalItems / $this->limit );
-
     }
 
     /**
@@ -142,7 +118,6 @@ class NavigationBlock
      */
     public function showPager()
     {
-
         $prevPage = $this->currentPage != 1 ? ($this->currentPage - 1) : 1;
         $nextPage = $this->currentPage <= $this->totalPages ? ($this->currentPage + 1) : $this->totalPages;
         $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
@@ -165,20 +140,17 @@ class NavigationBlock
                     return sprintf("%s=%s", $k, $v);
                 }, $arrayParams, array_keys($arrayParams)
             ));
-
             $params = '?' . $params . '&';
-
         } else {
             $params = '?';
         }
 
         $url = $strippedUrl . $params . 'page=';
 
-        if ($this->totalItems > $this->limit) { ?>
-
+        if ($this->totalItems > $this->limit) { 
+            ?>
             <div class="x3_pager">
                 <div class="x3_pager__ctrls x3_pager--prev">
-
                     <?php if ($this->currentPage != 1) { ?>
                         <a href="<?= $url . $prevPage ?>">
                             <i class="fas fa-angle-left"></i>
@@ -188,12 +160,10 @@ class NavigationBlock
                             <i class="fas fa-angle-left"></i>
                         </p>
                     <?php } ?>
-
                 </div>
                 <div class="x3_pager__ctrls x3_pager--select fakeselect">
                     <select data-trigger="pager">
                         <?php for ($i = 1; $i <= $this->totalPages; $i++) {
-
                             $selected = '';
 
                             if ($this->currentPage == $i) {
@@ -207,7 +177,6 @@ class NavigationBlock
                     <span><i class="fas fa-sort-down"></i></span>
                 </div>
                 <div class="x3_pager__ctrls x3_pager--next">
-
                     <?php if ($nextPage <= $this->totalPages) { ?>
                         <a href="<?= $url . $nextPage ?>">
                             <i class="fas fa-angle-right"></i>
@@ -217,34 +186,21 @@ class NavigationBlock
                             <i class="fas fa-angle-right"></i>
                         </p>
                     <?php } ?>
-
                 </div>
             </div>
-
             <?php
-
-            $cs = new ClientScript;
-            $cs->beginJs(View::POS_END, 'array-pager');
-
+                $cs = new ClientScript;
+                $cs->beginJs(View::POS_END, 'array-pager');
             ?>
             <script type='text/javascript'>
-
                 $(document).ready(function () {
-
                     $('body').on('change', '[data-trigger=pager]', function () {
                         window.location = $(this).val();
-
                     });
-
                 });
-
             </script>
-
             <?php
-            $cs->endJs();
-
+                $cs->endJs();
         }
-
     }
-
 }
