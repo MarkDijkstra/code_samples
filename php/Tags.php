@@ -17,7 +17,8 @@ class Tags extends \yii\db\ActiveRecord
         return '{{%tags}}';
     }
 
-    public function rules(){
+    public function rules()
+    {
         return [
             [['label' , 'slug' , 'language'],'string'],
         ];
@@ -46,9 +47,9 @@ class Tags extends \yii\db\ActiveRecord
      * @param bool $id
      * @return array
      */
-    public static function getTagsByIdAndLanguage($id = false , $language = false){
-
-        if($id != false && $language != false) {
+    public static function getTagsByIdAndLanguage($id = false , $language = false)
+    {
+        if ($id != false && $language != false) {
 
             $result = (new \yii\db\Query())
                 ->select(['order' , 'group_id' , 'language' , 'label' , 'slug'])
@@ -58,9 +59,7 @@ class Tags extends \yii\db\ActiveRecord
                 ->all();
 
             return $result;
-
         }
-
     }
 
     /**
@@ -69,11 +68,11 @@ class Tags extends \yii\db\ActiveRecord
      * @param bool $id
      * @return array
      */
-    public static function getTagsByGroup($id = false){
+    public static function getTagsByGroup($id = false)
+    {
+        $output = [];
 
-        $output =[];
-
-        if($id != false) {
+        if ($id != false) {
 
             $groupid = (new \yii\db\Query())
                 ->select(['group_id'])
@@ -84,7 +83,7 @@ class Tags extends \yii\db\ActiveRecord
 
             $groupid = ArrayHelper::getColumn($groupid, 'group_id');
 
-            foreach($groupid as $group) {
+            foreach ($groupid as $group) {
 
                 $result = (new \yii\db\Query())
                     ->select(['order', 'group_id', 'language', 'label', 'slug'])
@@ -95,14 +94,9 @@ class Tags extends \yii\db\ActiveRecord
                 $result = ArrayHelper::index($result, 'language');
 
                 $output[$group] = $result;
-
             }
 
             return $output;
-
         }
-
     }
-
-
 }
