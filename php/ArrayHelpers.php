@@ -14,11 +14,11 @@ class ArrayHelpers
      *  @param   string   $mtch   The value to match.
      *  @return  bool             Returns bool.
      */
-    public function multiKeyExists( $arr , $key = '' , $mtch = '' )
+    public function multiKeyExists($arr, $key = '', $mtch = '')
     {
-        if (is_array( $arr )) {
+        if (is_array($arr)) {
             // is in base array?
-            if (array_key_exists( $key , $arr ) && $arr[$key] == $mtch || empty($mtch) ) {
+            if (array_key_exists($key , $arr) && $arr[$key] == $mtch || empty($mtch)) {
                 return;
             }
 
@@ -45,7 +45,7 @@ class ArrayHelpers
      */
     public function setValueByKey($arr , $key , $ind , $val)
     {
-        if( is_array( $arr ) && $ind < count( $arr ) ){
+        if (is_array($arr) && $ind < count($arr)) {
             $arr[$ind][$key] = $val;
         }
         return $arr;
@@ -61,7 +61,7 @@ class ArrayHelpers
      */
     public function setValueByEmptyKey($arr , $key , $val)
     {
-        if (is_array( $arr )) {
+        if (is_array($arr)) {
             foreach ($arr as &$item) {
                 if ($item[$key] === "" || $item[$key] === " " || $item[$key] === false || $item[$key] === null) {
                     $item[$key] = $val;
@@ -93,7 +93,7 @@ class ArrayHelpers
     /**
      *  Multidimensional array strip tags cleaning.
      *
-     *  @source                                   https://stackoverflow.com/questions/32614584/how-can-i-remove-all-html-tags-from-an-array
+     *  @source   https://stackoverflow.com/questions/32614584/how-can-i-remove-all-html-tags-from-an-array
      *  @param    array     $input
      *  @param    bool      $easy                 einfache Konvertierung für 1-Dimensionale Arrays ohne Objecte
      *  @param    boolean   $throwByFoundObject
