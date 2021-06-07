@@ -5,7 +5,6 @@ namespace common\models;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
-
 class Tags extends \yii\db\ActiveRecord
 {
 
