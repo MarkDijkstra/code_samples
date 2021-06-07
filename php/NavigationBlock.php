@@ -5,7 +5,6 @@ use yii\web\View;
 
 class NavigationBlock
 {
-
     public $limit;
     public $array;
     public $currentPage;
@@ -31,7 +30,7 @@ class NavigationBlock
      */
     public function totalItems()
     {
-        return count($this->array);
+        return count ($this->array);
     }
 
     /**
@@ -42,19 +41,19 @@ class NavigationBlock
         $offset = self::offset();
 
         $total      = count($array);
-        $totalPages = ceil( $total / $limit );
-        $page       = ! empty( $_GET['page'] ) ? (int) $_GET['page'] : 1;
+        $totalPages = ceil($total / $limit);
+        $page       = ! empty($_GET['page']) ? (int) $_GET['page'] : 1;
         $page       = max($page, 1);
         $page       = min($page, $totalPages);
         $offset     = ($page - 1) * $limit;
         $offset     = $offset < 0 ? 0 : $offset;
         $output     = [];
         
-        foreach($array as $item) {
+        foreach ($array as $item) {
            $output[] = array_slice($item, $offset, $limit);
         }
         
-        return array_slice($this->array, $offset, $this->limit);
+        return array_slice ($this->array, $offset, $this->limit);
     }
 
     /**
@@ -90,7 +89,7 @@ class NavigationBlock
      * @param $limit
      * @return int
      */
-    public static function setPerPage( $limit )
+    public static function setPerPage($limit)
     {
         return is_integer($limit) ? $limit : 10;
     }
@@ -110,7 +109,7 @@ class NavigationBlock
      */
     private function totalPages()
     {
-        return ceil( $this->totalItems / $this->limit );
+        return ceil($this->totalItems / $this->limit);
     }
 
     /**
